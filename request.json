@@ -1,0 +1,9 @@
+{
+    "request": {
+        "flow": {
+            "flow_id": "pleple",
+            "action_token": "234"
+        },
+        "action": "test"
+    }
+}
