@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "flow": {
+          "type": "object",
+          "properties": {
+            "action_token": {
+              "type": "string",
+              "minLength": 40,
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "action_token"
+          ]
+        },
+        "action": {
+          "type": "string"
+        },
+        "pokemon_data": {
+          "type": "object",
+          "properties": {
+            "basic": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "subtype": {
+                  "type": "string"
+                },
+                "weight": {
+                  "type": "string"
+                },
+                "height": {
+                  "type": "string"
+                },
+                "catch_place": {
+                  "type": "string"
+                },
+                "catch_date": {
+                  "type": "string"
+                },
+                "sex": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "weight",
+                "height",
+                "catch_place",
+                "catch_date",
+                "sex"
+              ]
+            },
+            "trainer_data": {
+              "type": "object",
+              "properties": {
+                "trainer_id": {
+                  "type": "number",
+                  "minimum": 10000000000,
+                  "maximum": 99999999999
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "street": {
+                  "type": "string"
+                },
+                "house": {
+                  "type": "string"
+                },
+                "flat": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "trainer_id",
+                "first_name",
+                "last_name",
+                "country",
+                "city",
+                "street",
+                "house"
+              ]
+            },
+            "identity": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string"
+                },
+                "expiration_date": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "number",
+                "expiration_date"
+              ]
+            },
+            "contact": {
+              "type": "object",
+              "properties": {
+                "mobile_phone": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "mobile_phone",
+                "email"
+              ]
+            }
+          },
+          "required": [
+            "basic",
+            "trainer_data",
+            "identity",
+            "contact"
+          ]
+        }
+      },
+      "required": [
+        "flow",
+        "action",
+        "pokemon_data"
+      ]
+    }
+  },
+  "required": [
+    "request"
+  ]
+}
