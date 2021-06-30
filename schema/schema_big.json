@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "flow": {
+          "type": "object",
+          "properties": {
+            "action_token": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "action_token"
+          ]
+        },
+        "action": {
+          "type": "string"
+        },
+        "person_data": {
+          "type": "object",
+          "properties": {
+            "basic": {
+              "type": "object",
+              "properties": {
+                "nationality": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "pesel": {
+                  "type": "string"
+                },
+                "birth_date": {
+                  "type": "string"
+                },
+                "sex": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "nationality",
+                "country",
+                "first_name",
+                "last_name",
+                "pesel",
+                "birth_date",
+                "sex"
+              ]
+            },
+            "permanent_address": {
+              "type": "object",
+              "properties": {
+                "country": {
+                  "type": "string"
+                },
+                "postal_code": {
+                  "type": "string"
+                },
+                "house": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "street": {
+                  "type": "string"
+                },
+                "flat": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "country",
+                "postal_code",
+                "house",
+                "city",
+                "street",
+                "flat"
+              ]
+            },
+            "additional": {
+              "type": "object",
+              "properties": {
+                "marital_status": {
+                  "type": "string"
+                },
+                "education": {
+                  "type": "string"
+                },
+                "pep": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "marital_status",
+                "education",
+                "pep"
+              ]
+            },
+            "identity": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string"
+                },
+                "expire_date": {
+                  "type": "string"
+                },
+                "issue_date": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "number",
+                "expire_date",
+                "issue_date"
+              ]
+            },
+            "contact": {
+              "type": "object",
+              "properties": {
+                "mobile_phone": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "mobile_phone",
+                "email"
+              ]
+            }
+          },
+          "required": [
+            "basic",
+            "permanent_address",
+            "additional",
+            "identity",
+            "contact"
+          ]
+        }
+      },
+      "required": [
+        "flow",
+        "action",
+        "person_data"
+      ]
+    }
+  },
+  "required": [
+    "request"
+  ]
+}

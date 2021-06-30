@@ -1,0 +1,39 @@
+{
+    "request": {
+        "flow": {
+            "action_token": "ad9d19907e1e64270ac4142993546d4bf3e568e7"
+        },
+        "action": "TEST",
+        "pokemon_data": {
+            "basic": {
+                "type": "Grass",
+                "subtype": "Poison",
+                "name": "Bulbasaur",
+                "weight": "6.9",
+				"height": "0.7",
+                "catch_place": "Warszawa",
+                "catch_date": "2020-11-02",
+                "sex": "FEMALE"
+            },
+            "trainer_data": {
+                "country": "PL",
+                "first_name": "Gocha",
+                "last_name": "Ha",
+                "trainer_id": 64021895582,
+                "city": "Warszawa",
+                "street": "Elekcyjna",
+				"house": "20",
+                "flat": "11"
+            },
+            "identity": {
+                "number": "BBU377746",
+                "expiration_date": "2030-01-01"
+            },
+            "contact": {
+                "mobile_phone": "111222333",
+                "email": "malgorzata.harasimiuk@softax.pl"
+            }
+        },
+        "privacy_policy_acceptance": true
+    }
+}

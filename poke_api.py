@@ -1,3 +1,5 @@
+import random
+
 import jsonschema
 from flask import Flask, jsonify, request, session
 from flask_restful import Resource, Api, reqparse
@@ -5,17 +7,19 @@ from jsonschema import validate
 from oauth2 import tokengenerator
 import json
 
+from actiontoken import ActionToken
+
 
 app = Flask(__name__)
-app.secret_key = b'demoapi123456!@#$%^'
+app.secret_key = 'demoapi123456!@#$%^'
 api = Api(app)
+at = ActionToken()
 
 
-def generate_token(length: int = 40):
-    token_generator = tokengenerator.URandomTokenGenerator(length)
-    token = token_generator.generate()
-    session['action_token'] = token
-    return token
+# def generate_token(length: int = 40):
+#     token_generator = tokengenerator.URandomTokenGenerator(length)
+#     token = token_generator.generate()
+#     return token
 
 
 def get_schema(schema_json: str):
@@ -30,30 +34,15 @@ def get_request(request_json: str):
     return _request
 
 
-# class ActionToken(object):
-#
-#     value = None
-#
-#     # def __init__(self):
-#     #     self.value = generate_token()
-#
-#     def generate_token(self, length: int = 40) -> str:
-#         token_generator = tokengenerator.URandomTokenGenerator(length)
-#         self.value = token_generator.generate()
-#         return self.value
-#
-#     def check_token(self, token: str) -> bool:
-#         if self.value == token:
-#             return True
-#         return False
-
-
 class StartFlow(Resource):
 
     def get(self):
+        at.generate_action_token()
+        session['name'] = str(random.randint(1000, 9999))
+        print(session['name'])
         return {
-            'status': 'success',
-            'action_token': generate_token()
+            "status": "success",
+            "action_token": at.get_action_token()
         }, 200
 
 
@@ -68,18 +57,19 @@ class PokemonData(Resource):
             validate(json_data, schema)
         except jsonschema.exceptions.ValidationError as err:
             print(err)
-            err = 'Sent request is not valid.'
-            return {'error': err}, 400
+            err = "Sent request is not valid."
+            return {"error": err}, 400
 
-        token_from_request = json_data['request']['flow']['action_token']
-        print(token_from_request)
-        print(session['action_token'])
-        if token_from_request == session['action_token']:
+        if json_data['request']['flow']['action_token'] == at.get_action_token():
+            at.generate_action_token()
             return {
-                'status': 'success',
-                'action_token': generate_token()
+                "status": "success",
+                "action_token": at.get_action_token()
             }, 200
-        return {'error': 'Wrong action token.'}, 400
+        else:
+            return {
+                'error': 'pleple'
+            }, 400
 
 
 api.add_resource(StartFlow, '/start')
