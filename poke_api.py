@@ -16,10 +16,7 @@ api = Api(app)
 at = ActionToken()
 
 
-# def generate_token(length: int = 40):
-#     token_generator = tokengenerator.URandomTokenGenerator(length)
-#     token = token_generator.generate()
-#     return token
+# Branching test
 
 
 def get_schema(schema_json: str):
