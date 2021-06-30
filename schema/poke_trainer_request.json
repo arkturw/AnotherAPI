@@ -1,7 +1,7 @@
 {
     "request": {
         "flow": {
-            "action_token": "ad9d19907e1e64270ac4142993546d4bf3e568e7"
+            "next_step": "dummy"
         },
         "action": "TEST",
         "pokemon_data": {

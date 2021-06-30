@@ -4,22 +4,12 @@ import jsonschema
 from flask import Flask, jsonify, request, session
 from flask_restful import Resource, Api, reqparse
 from jsonschema import validate
-from oauth2 import tokengenerator
 import json
-
-from actiontoken import ActionToken
 
 
 app = Flask(__name__)
 app.secret_key = 'demoapi123456!@#$%^'
 api = Api(app)
-at = ActionToken()
-
-
-# def generate_token(length: int = 40):
-#     token_generator = tokengenerator.URandomTokenGenerator(length)
-#     token = token_generator.generate()
-#     return token
 
 
 def get_schema(schema_json: str):
@@ -37,12 +27,11 @@ def get_request(request_json: str):
 class StartFlow(Resource):
 
     def get(self):
-        at.generate_action_token()
         session['name'] = str(random.randint(1000, 9999))
         print(session['name'])
         return {
             "status": "success",
-            "action_token": at.get_action_token()
+            "next_step": "POKEMON_DATA"
         }, 200
 
 
@@ -59,17 +48,10 @@ class PokemonData(Resource):
             print(err)
             err = "Sent request is not valid."
             return {"error": err}, 400
-
-        if json_data['request']['flow']['action_token'] == at.get_action_token():
-            at.generate_action_token()
-            return {
-                "status": "success",
-                "action_token": at.get_action_token()
-            }, 200
-        else:
-            return {
-                'error': 'pleple'
-            }, 400
+        return {
+            "status": "success",
+            "next_step": "DALEJ_NIE_WIEM"
+        }, 200
 
 
 api.add_resource(StartFlow, '/start')

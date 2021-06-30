@@ -8,14 +8,12 @@
         "flow": {
           "type": "object",
           "properties": {
-            "action_token": {
-              "type": "string",
-              "minLength": 40,
-              "maxLength": 40
+            "next_step": {
+              "type": "string"
             }
           },
           "required": [
-            "action_token"
+            "next_step"
           ]
         },
         "action": {
